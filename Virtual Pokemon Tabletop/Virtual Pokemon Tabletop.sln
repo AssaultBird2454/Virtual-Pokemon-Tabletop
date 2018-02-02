@@ -34,45 +34,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "AssaultBird2454.V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.MDI", "Hammer.MdiContainer\WPF.MDI.csproj", "{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{06A1ED4D-0977-4A5C-8202-3DB29684DF20}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTU System 1.05", "PTU System 1.05", "{52A1749A-565A-49BF-9D8B-D9E23413A440}"
-	ProjectSection(SolutionItems) = preProject
-		Docs\PTU System 1.05\Chapter 1 (Introduction).pdf = Docs\PTU System 1.05\Chapter 1 (Introduction).pdf
-		Docs\PTU System 1.05\Chapter 10 (Indices and Reference).pdf = Docs\PTU System 1.05\Chapter 10 (Indices and Reference).pdf
-		Docs\PTU System 1.05\Chapter 11 (Running the Game).pdf = Docs\PTU System 1.05\Chapter 11 (Running the Game).pdf
-		Docs\PTU System 1.05\Chapter 2 (Character Creation).pdf = Docs\PTU System 1.05\Chapter 2 (Character Creation).pdf
-		Docs\PTU System 1.05\Chapter 3 (Skills, Edges And Features).pdf = Docs\PTU System 1.05\Chapter 3 (Skills, Edges And Features).pdf
-		Docs\PTU System 1.05\Chapter 4 (Trainer Classes).pdf = Docs\PTU System 1.05\Chapter 4 (Trainer Classes).pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon).pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon).pdf
-		Docs\PTU System 1.05\Chapter 6 (Playing the Game).pdf = Docs\PTU System 1.05\Chapter 6 (Playing the Game).pdf
-		Docs\PTU System 1.05\Chapter 7 (Combat).pdf = Docs\PTU System 1.05\Chapter 7 (Combat).pdf
-		Docs\PTU System 1.05\Chapter 8 (Pokemon Contests).pdf = Docs\PTU System 1.05\Chapter 8 (Pokemon Contests).pdf
-		Docs\PTU System 1.05\Chapter 9 (Gear and Items).pdf = Docs\PTU System 1.05\Chapter 9 (Gear and Items).pdf
-		Docs\PTU System 1.05\Pokedex 1.05.pdf = Docs\PTU System 1.05\Pokedex 1.05.pdf
-		Docs\PTU System 1.05\Pokemon Tabletop United 1.05 Core.pdf = Docs\PTU System 1.05\Pokemon Tabletop United 1.05 Core.pdf
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter 5 (Pokemon)", "Chapter 5 (Pokemon)", "{200830E4-F5D2-4876-8FEF-6DF901F3FD6C}"
-	ProjectSection(SolutionItems) = preProject
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Breeding Pokemon.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Breeding Pokemon.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Capturing Pokemon.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Capturing Pokemon.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Disposition.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Disposition.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Fishing.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Fishing.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Leveling Up.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Leveling Up.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Loyalty.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Loyalty.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Mega Evolution.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Mega Evolution.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Poke Edges.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Poke Edges.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Pokemon as Mounts.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Pokemon as Mounts.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Pokemon Fossils.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Pokemon Fossils.pdf
-		Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Sample Pokemon Builds.pdf = Docs\PTU System 1.05\Chapter 5 (Pokemon)\Chapter 5 (Pokemon) - Sample Pokemon Builds.pdf
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter 2 (Character Creation)", "Chapter 2 (Character Creation)", "{0DD766F2-800F-438E-9209-5D73BCF2D9ED}"
-	ProjectSection(SolutionItems) = preProject
-		Docs\PTU System 1.05\Chapter 2 (Character Creation)\Chapter 2 (Character Creation) - Quick Start.pdf = Docs\PTU System 1.05\Chapter 2 (Character Creation)\Chapter 2 (Character Creation) - Quick Start.pdf
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "AssaultBird2454.VPTU.Installer\Installer.csproj", "{96F1A781-853B-4591-8CE3-4846E6FB37B5}"
 EndProject
 Global
@@ -148,9 +109,6 @@ Global
 		{F5CD6B0D-B4FF-448A-9276-3C563C4C02DF} = {C1729FAC-DB65-4179-9817-EDCE648E5D11}
 		{842FDA3F-FD43-47DF-B1E1-50A48A0FFC84} = {1C80FE3C-DC93-4519-9E62-811E3C0864A6}
 		{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A} = {71F3832E-44F5-447B-96F7-8E29D83B9DA8}
-		{52A1749A-565A-49BF-9D8B-D9E23413A440} = {06A1ED4D-0977-4A5C-8202-3DB29684DF20}
-		{200830E4-F5D2-4876-8FEF-6DF901F3FD6C} = {52A1749A-565A-49BF-9D8B-D9E23413A440}
-		{0DD766F2-800F-438E-9209-5D73BCF2D9ED} = {52A1749A-565A-49BF-9D8B-D9E23413A440}
 		{96F1A781-853B-4591-8CE3-4846E6FB37B5} = {BE5EB1E2-3DE9-4DFB-ABA9-20C1CF7A99C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

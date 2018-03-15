@@ -24,7 +24,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
             else
                 User = _User;
 
-            MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
+            MainWindow.SaveManager.SaveData.AuthManager.Identity_GetKey(User.UserID);
             Load();
         }
 
@@ -33,6 +33,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
             Player_ID.Text = User.UserID;
             Player_Name.Text = User.Name;
             Player_ICN.Text = User.IC_Name;
+            isGM.IsChecked = User.isGM;
 
             PlayerColor_Picker.SelectedColor = User.UserColor;
 
@@ -44,7 +45,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
             User.Name = Player_Name.Text;
             User.IC_Name = Player_ICN.Text;
 
-            User.UserColor = (Color) PlayerColor_Picker.SelectedColor;
+            User.UserColor = (Color)PlayerColor_Picker.SelectedColor;
 
             // Groups
         }
@@ -52,12 +53,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
         private void PlayerColor_Picker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             if (PlayerColor_Picker.SelectedColor != null)
-                User.UserColor = (Color) PlayerColor_Picker.SelectedColor;
+                User.UserColor = (Color)PlayerColor_Picker.SelectedColor;
         }
 
         private void View_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID), "Player Key");
+            MessageBox.Show(MainWindow.SaveManager.SaveData.AuthManager.Identity_GetKey(User.UserID), "Player Key");
         }
 
         private void Export_PlayerKey_Click(object sender, RoutedEventArgs e)
@@ -78,7 +79,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
         {
             var ID = new ClientIdentity();
 
-            ID.AuthKey = MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
+            ID.AuthKey = MainWindow.SaveManager.SaveData.AuthManager.Identity_GetKey(User.UserID);
             ID.Campaign_Name = MainWindow.SaveManager.SaveData.Campaign_Data.Campaign_Name;
             ID.ICN = User.IC_Name;
             ID.Server_Address = MainWindow.SaveManager.SaveData.Campaign_Data.Server_Address;
@@ -86,13 +87,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
             try
             {
-                File.Delete(((SaveFileDialog) sender).FileName);
+                File.Delete(((SaveFileDialog)sender).FileName);
             }
             catch
             {
             }
 
-            using (var SW = new StreamWriter(new FileStream(((SaveFileDialog) sender).FileName, FileMode.OpenOrCreate)))
+            using (var SW = new StreamWriter(new FileStream(((SaveFileDialog)sender).FileName, FileMode.OpenOrCreate)))
             {
                 SW.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(ID));
                 SW.Flush();
@@ -101,8 +102,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void ReGenerate_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.SaveManager.SaveData.Identities.Find(x => x.UserID == User.UserID).ReGenerate_PlayerKey();
-            MessageBox.Show(MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID), "New Player Key");
+            MessageBox.Show(MainWindow.SaveManager.SaveData.AuthManager.Identity_GenerateKey(User.UserID), "New Player Key");
         }
 
         private void Player_ID_ContextMenuClosing(object sender, ContextMenuEventArgs e)
@@ -121,7 +121,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void isGM_Checked(object sender, RoutedEventArgs e)
         {
-            User.isGM = (bool) isGM.IsChecked;
+            User.isGM = (bool)isGM.IsChecked;
         }
     }
 }

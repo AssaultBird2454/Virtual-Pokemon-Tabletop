@@ -13,81 +13,19 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
     public class PTUSaveData
     {
         /// <summary>
+        /// Defines where the SaveManager is. This allows access to query the database.
+        /// </summary>
+        SaveManager Manager;
+        /// <summary>
         /// Creates a new PTUSaveData class
         /// </summary>
         /// <param name="InitNewSave">Initilises all objects</param>
-        public PTUSaveData(bool InitNewSave = false)
+        public PTUSaveData(SaveManager _Manager)
         {
-            if (InitNewSave)
-            {
-                Campaign_Data = new Campaign_Data(true);
-                Campaign_Settings = new Campaign_Settings(true);
-                Server_Settings = new Server_Settings(true);
+            Manager = _Manager;
 
-                Typing_Manager = new BattleManager.Typing.Manager(true);
-
-                Identities = new List<Authentication_Manager.Data.Identity>();
-                Permissions = new List<Authentication_Manager.Data.PermissionData>();
-                Users = new List<Authentication_Manager.Data.User>();
-                Groups = new List<Authentication_Manager.Data.Group>();
-
-                Folders = new List<EntitiesManager.Folder>();
-                Trainers = new List<EntitiesManager.Trainer.TrainerCharacter>();
-                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
-
-                //MapFiles = new List<Resources.MapFileData>();
-                //Maps = new List<Resources.MapData>();
-
-                AudioResources = new List<SoundSystem.SaveData.AudioData>();
-                ImageResources = new List<Resource_Data.Resources>();
-
-                PokedexData = new Pokedex.Save_Data.Pokedex(true);
-            }
-        }
-
-        /// <summary>
-        /// Creates a new instance of all objects that are null
-        /// </summary>
-        public void InitNullObjects()
-        {
-            //MapFiles = new List<Resources.MapFileData>();
-            //Maps = new List<Resources.MapData>();
-
-            if (Identities == null)
-                Identities = new List<Authentication_Manager.Data.Identity>();
-            if (Permissions == null)
-                Permissions = new List<Authentication_Manager.Data.PermissionData>();
-            if (Users == null)
-                Users = new List<Authentication_Manager.Data.User>();
-            if (Groups == null)
-                Groups = new List<Authentication_Manager.Data.Group>();
-
-            if (AudioResources == null)
-                AudioResources = new List<SoundSystem.SaveData.AudioData>();
-            if (ImageResources == null)
-                ImageResources = new List<Resource_Data.Resources>();
-
-            if (Folders == null)
-                Folders = new List<EntitiesManager.Folder>();
-            if (Pokemon == null)
-                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
-
-            if (PokedexData == null)
-                PokedexData = new Pokedex.Save_Data.Pokedex(true);
-            PokedexData.InitNullObjects();
-            if (Campaign_Data == null)
-                Campaign_Data = new Campaign_Data(true);
-            Campaign_Data.InitNullObjects();
-            if (Campaign_Settings == null)
-                Campaign_Settings = new Campaign_Settings(true);
-            Campaign_Settings.InitNullObjects();
-            if (Server_Settings == null)
-                Server_Settings = new Server_Settings(true);
-            Server_Settings.InitNullObjects();
-
-            if (Typing_Manager == null)
-                Typing_Manager = new BattleManager.Typing.Manager(true);
-            Typing_Manager.InitNullObjects();
+            Campaign_Data = new Campaign_Data(Manager);
+            AuthManager = new Auth(Manager);
         }
 
         #region Data
@@ -97,27 +35,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         #endregion
 
         #region Auth and Perms
-        public List<Authentication_Manager.Data.Identity> Identities;
-        public List<Authentication_Manager.Data.PermissionData> Permissions;
-        public List<Authentication_Manager.Data.User> Users;
-        public List<Authentication_Manager.Data.Group> Groups;
-
-        public string Identity_GetKey(string UserID)
-        {
-            if (Identities.FindAll(X => X.UserID == UserID).Count <= 0)
-            {
-                Identities.Add(new Authentication_Manager.Data.Identity()
-                {
-                    UserID = UserID
-                });
-            }
-
-            Authentication_Manager.Data.Identity ID = Identities.Find(x => x.UserID == UserID);
-            if (ID == null)
-                return "";
-
-            return ID.Key;
-        }
+        public Auth AuthManager;
         #endregion
 
         #region Battles

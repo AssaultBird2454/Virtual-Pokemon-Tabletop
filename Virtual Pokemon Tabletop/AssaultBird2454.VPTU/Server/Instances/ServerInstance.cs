@@ -57,11 +57,11 @@ namespace AssaultBird2454.VPTU.Server.Instances
         public bool Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, CommandData.Auth.Login Login)
         {
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
-            Authentication_Manager.Data.Identity ID = SaveManager.SaveData.Identities.Find(x => x.Key == Login.Client_Key);
+            Authentication_Manager.Data.Identity ID = SaveManager.SaveData.AuthManager.Identity_GetIdentity(Login.Client_Key);
 
             if (ID != null)
             {
-                Authentication_Manager.Data.User user = SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
+                Authentication_Manager.Data.User user = SaveManager.SaveData.AuthManager.Users_GetByID(ID.UserID);
                 Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
 
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Passed authenticated as User " + user.Name + " (" + user.IC_Name + ")", Class.Logging.LoggerLevel.Audit);

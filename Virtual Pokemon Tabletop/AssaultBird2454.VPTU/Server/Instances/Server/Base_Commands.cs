@@ -362,7 +362,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             {
                 Entrys = Entities,
                 Folders = Folders,
-                UserList = Instance.SaveManager.SaveData.Users
+                UserList = Instance.SaveManager.SaveData.AuthManager.Users_List()
             });
         }
 

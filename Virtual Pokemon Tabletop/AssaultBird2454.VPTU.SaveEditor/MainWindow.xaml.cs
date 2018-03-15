@@ -391,9 +391,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
             SaveEditor_TabPanel.IsEnabled = true;
 
             OverViewSettings_Reload(); // Reload Settings and other info
-            PokedexManager_ReloadList(); //Reload Pokedex List
-            ResourceManager_ReloadList(); //Reload Resource List
-            EntitiesManager_ReloadList(); // Reload Characters List
+            //PokedexManager_ReloadList(); //Reload Pokedex List
+            //ResourceManager_ReloadList(); //Reload Resource List
+            //EntitiesManager_ReloadList(); // Reload Characters List
             UserGroup_Users_Reload(); // Reload Users List
         }
 
@@ -1238,7 +1238,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             foreach (var user in pc.PokemonData.View)
             {
-                var UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+                var UData = SaveManager.SaveData.AuthManager.Users_GetByID(user);
 
                 View.Add(new KeyValuePair<Color, string>(UData.UserColor, UData.IC_Name));
             }
@@ -1261,7 +1261,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             foreach (var user in entry.View)
             {
-                var UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+                var UData = SaveManager.SaveData.AuthManager.Users_GetByID(user);
 
                 View.Add(new KeyValuePair<Color, string>(UData.UserColor, UData.IC_Name));
             }
@@ -1391,7 +1391,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             OverViewSettings_UsersGroups_UserList.Items.Clear();
 
-            foreach (var User in SaveManager.SaveData.Users)
+            foreach (var User in SaveManager.SaveData.AuthManager.Users_List())
                 OverViewSettings_UsersGroups_UserList.Items.Add(User);
         }
 
@@ -1405,7 +1405,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             var User = new Users();
             var Pass = User.ShowDialog();
 
-            SaveManager.SaveData.Users.Add(User.User);
+            SaveManager.SaveData.AuthManager.Users_Add(User.User);
             OverViewSettings_UsersGroups_UserList.Items.Add(User.User);
         }
 
@@ -1417,6 +1417,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
             UserGroup_Users_Reload();
         }
 
+        private void OverViewSettings_UsersGroups_DeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            SaveManager.SaveData.AuthManager.Users_Remove((User)OverViewSettings_UsersGroups_UserList.SelectedItems[0]);
+
+            UserGroup_Users_Reload();
+        }
         #endregion
 
         #endregion

@@ -8,57 +8,141 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
 {
     public class Campaign_Data
     {
-        public Campaign_Data(bool InitNewSave = false)
+        SaveManager Manager;
+        public Campaign_Data(SaveManager _Manager)
         {
-            if (InitNewSave)
+            Manager = _Manager;
+        }
+
+        public string Campaign_Name
+        {
+            get
             {
-                Campaign_Name = "Campaign Name";
-                Campaign_GM_Name = "Campaign Game Masters Name";
-                Campaign_Desc = "Campaigns Description / Plot Hook / What ever you want";
-                Server_Address = "";
-                Server_Port = 25444;
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand("SELECT `value` FROM Campaign_Settings WHERE `key` = \"Campaign_Name\";", Manager.Connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.HasRows)
+                            return "";
+
+                        dr.Read();
+                        return dr.GetString(0);
+                    }
+                }
+            }
+            set
+            {
+                if (new System.Data.SQLite.SQLiteCommand("UPDATE Campaign_Settings SET `value`=\"" + value + "\" WHERE `key`=\"Campaign_Name\";", Manager.Connection).ExecuteNonQuery() == 0)
+                {
+                    new System.Data.SQLite.SQLiteCommand("INSERT INTO Campaign_Settings (`key`, `value`) VALUES (\"Campaign_Name\", \"" + value + "\");", Manager.Connection).ExecuteNonQuery();
+                }
+            }
+        }
+        public string Campaign_Desc
+        {
+            get
+            {
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand("SELECT `value` FROM Campaign_Settings WHERE `key` = \"Campaign_Desc\";", Manager.Connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.HasRows)
+                            return "";
+
+                        dr.Read();
+                        return dr.GetString(0);
+                    }
+                }
+            }
+            set
+            {
+                if (new System.Data.SQLite.SQLiteCommand("UPDATE Campaign_Settings SET `value`=\"" + value + "\" WHERE `key`=\"Campaign_Desc\";", Manager.Connection).ExecuteNonQuery() == 0)
+                {
+                    new System.Data.SQLite.SQLiteCommand("INSERT INTO Campaign_Settings (`key`, `value`) VALUES (\"Campaign_Desc\", \"" + value + "\");", Manager.Connection).ExecuteNonQuery();
+                }
+            }
+        }
+        public string Campaign_GM_Name
+        {
+            get
+            {
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand("SELECT `value` FROM Campaign_Settings WHERE `key` = \"Campaign_GM_Name\";", Manager.Connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.HasRows)
+                            return "";
+
+                        dr.Read();
+                        return dr.GetString(0);
+                    }
+                }
+            }
+            set
+            {
+                if (new System.Data.SQLite.SQLiteCommand("UPDATE Campaign_Settings SET `value`=\"" + value + "\" WHERE `key`=\"Campaign_GM_Name\";", Manager.Connection).ExecuteNonQuery() == 0)
+                {
+                    new System.Data.SQLite.SQLiteCommand("INSERT INTO Campaign_Settings (`key`, `value`) VALUES (\"Campaign_GM_Name\", \"" + value + "\");", Manager.Connection).ExecuteNonQuery();
+                }
             }
         }
 
-        public void InitNullObjects()
+        public string Server_Address
         {
-            if (string.IsNullOrWhiteSpace(Campaign_Name))
+            get
             {
-                Campaign_Name = "";
-            }
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand("SELECT `value` FROM Campaign_Settings WHERE `key` = \"Server_Address\";", Manager.Connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.HasRows)
+                            return "127.0.0.1";
 
-            if (string.IsNullOrWhiteSpace(Campaign_GM_Name))
-            {
-                Campaign_GM_Name = "";
+                        dr.Read();
+                        return dr.GetString(0);
+                    }
+                }
             }
-
-            if (string.IsNullOrWhiteSpace(Campaign_Desc))
+            set
             {
-                Campaign_Desc = "";
-            }
-
-            if (string.IsNullOrWhiteSpace(Server_Address))
-            {
-                Server_Address = "";
+                if (new System.Data.SQLite.SQLiteCommand("UPDATE Campaign_Settings SET `value`=\"" + value + "\" WHERE `key`=\"Server_Address\";", Manager.Connection).ExecuteNonQuery() == 0)
+                {
+                    new System.Data.SQLite.SQLiteCommand("INSERT INTO Campaign_Settings (`key`, `value`) VALUES (\"Server_Address\", \"" + value + "\");", Manager.Connection).ExecuteNonQuery();
+                }
             }
         }
+        public int Server_Port
+        {
+            get
+            {
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand("SELECT `value` FROM Campaign_Settings WHERE `key` = \"Server_Port\";", Manager.Connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.HasRows)
+                            return 25444;
 
-        public string Campaign_Name { get; set; }
-        public string Campaign_Desc { get; set; }
-        public string Campaign_GM_Name { get; set; }
-
-        public string Server_Address { get; set; }
-        public int Server_Port { get; set; }
+                        dr.Read();
+                        return Convert.ToInt32(dr.GetString(0));
+                    }
+                }
+            }
+            set
+            {
+                if (new System.Data.SQLite.SQLiteCommand("UPDATE Campaign_Settings SET `value`=\"" + value + "\" WHERE `key`=\"Server_Port\";", Manager.Connection).ExecuteNonQuery() == 0)
+                {
+                    new System.Data.SQLite.SQLiteCommand("INSERT INTO Campaign_Settings (`key`, `value`) VALUES (\"Server_Port\", \"" + value + "\");", Manager.Connection).ExecuteNonQuery();
+                }
+            }
+        }
     }
 
     public class Campaign_Settings
     {
-        public Campaign_Settings(bool InitNewSave = false)
+        SaveManager Manager;
+        public Campaign_Settings(SaveManager _Manager)
         {
-            if (InitNewSave)
-            {
-                // New Save
-            }
+            Manager = _Manager;
         }
 
         public void InitNullObjects()
@@ -71,12 +155,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
 
     public class Server_Settings
     {
-        public Server_Settings(bool InitNewSave = false)
+        SaveManager Manager;
+
+        public Server_Settings(SaveManager _Manager)
         {
-            if (InitNewSave)
-            {
-                // New Save
-            }
+            Manager = _Manager;
         }
 
         public void InitNullObjects()

@@ -44,7 +44,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon
                 foreach (var pokemon in Manager.SaveData.Pokemon)
                     if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
                         Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon,
-                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon
+                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon_List()
                                 .Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")"));
 
             if (Search_Trainer_Pokemon.IsChecked == true)
@@ -52,7 +52,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon
                 foreach (var pokemon in trainer.PartyPokemon)
                     if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
                         Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon,
-                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon
+                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon_List()
                                 .Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", trainer.Name));
         }
 

@@ -161,8 +161,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
                     {
                         Authentication_Manager.Data.Identity ID = new Authentication_Manager.Data.Identity();
 
-                        ID.UserID = dr.GetString(1);
-                        ID.Key = dr.GetString(0);
+                        ID.UserID = dr.GetString(0);
+                        ID.Key = Key;
 
                         return ID;
                     }

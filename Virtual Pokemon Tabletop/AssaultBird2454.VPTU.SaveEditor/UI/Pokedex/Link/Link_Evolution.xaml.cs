@@ -31,14 +31,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link
 
         public void Save()
         {
-            LinkData.Pokemon_Evo = MainWindow.SaveManager.SaveData.PokedexData.Pokemon
+            LinkData.Pokemon_Evo = MainWindow.SaveManager.SaveData.PokedexData.Pokemon_List()
                 .Find(x => x.Species_Name == Pokemon_Name.Text).Species_DexID;
             //LinkData.Evo_Type = VPTU.Pokedex.Pokemon.Evolution_Type.Normal;
         }
 
         public void Load()
         {
-            Pokemon_Name.Text = MainWindow.SaveManager.SaveData.PokedexData.Pokemon
+            Pokemon_Name.Text = MainWindow.SaveManager.SaveData.PokedexData.Pokemon_List()
                 .Find(x => x.Species_DexID == LinkData.Pokemon_Evo).Species_Name;
         }
 

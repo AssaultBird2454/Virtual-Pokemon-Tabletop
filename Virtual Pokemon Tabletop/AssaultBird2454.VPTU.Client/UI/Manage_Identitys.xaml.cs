@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using AssaultBird2454.VPTU.Authentication_Manager.Data;
@@ -56,7 +57,7 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             ClientIdentity ID;
 
-            using (var SR = new StreamReader(new FileStream(((OpenFileDialog) sender).FileName, FileMode.OpenOrCreate)))
+            using (var SR = new StreamReader(new FileStream(((OpenFileDialog)sender).FileName, FileMode.OpenOrCreate)))
             {
                 ID = Newtonsoft.Json.JsonConvert.DeserializeObject<ClientIdentity>(SR.ReadToEnd());
             }
@@ -67,15 +68,19 @@ namespace AssaultBird2454.VPTU.Client.UI
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            var edit = new Add((ClientIdentity) ID_List.SelectedItems[0]);
-            edit.ShowDialog();
+            try
+            {
+                var edit = new Add((ClientIdentity)ID_List.SelectedItems[0]);
+                edit.ShowDialog();
 
-            Load();
+                Load();
+            }
+            catch (IndexOutOfRangeException) { /* Dont Care, No value selected */ }
         }
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
-            var id = (ClientIdentity) ID_List.SelectedItems[0];
+            var id = (ClientIdentity)ID_List.SelectedItems[0];
 
             Program.Identities.Remove(id);
             ID_List.Items.Remove(id);

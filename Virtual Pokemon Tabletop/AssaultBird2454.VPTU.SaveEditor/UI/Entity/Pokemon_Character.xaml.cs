@@ -174,7 +174,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 var pokemon =
-                    Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
+                    Manager.SaveData.PokedexData.Pokemon_GetID(PokemonData.Species_DexID);
                 Basic_Species.Content = pokemon.Species_DexID + " (" + pokemon.Species_Name + ")";
             }
             catch
@@ -355,7 +355,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         public void LoadFromSpecies()
         {
             var NewPokemon =
-                Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
+                Manager.SaveData.PokedexData.Pokemon_GetID(PokemonData.Species_DexID);
 
             //try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
 
@@ -1301,7 +1301,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 Move = new Select_Move(Manager.SaveData.PokedexData,
-                    Manager.SaveData.PokedexData.Pokemon.First(x => x.Species_DexID == PokemonData.Species_DexID));
+                    Manager.SaveData.PokedexData.Pokemon_GetID(PokemonData.Species_DexID));
             }
             catch
             {

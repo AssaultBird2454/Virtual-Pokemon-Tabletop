@@ -31,7 +31,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         {
             Dispatcher.Invoke(() => Pokemon.Items.Clear());
 
-            foreach (var data in Pokedex.Pokemon)
+            foreach (var data in Pokedex.Pokemon_List())
                 if (data.Species_Name.ToLower().Contains(SearchName.ToLower()) ||
                     data.Species_DexID.ToString().Contains(SearchName))
                     Dispatcher.Invoke(new Action(() => Pokemon.Items.Add(data)));

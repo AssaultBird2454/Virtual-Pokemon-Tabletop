@@ -760,7 +760,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     var link = new EvoLinks();
                     link.LinkData = EL;
-                    link.PokemonName = Mgr.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
+                    link.PokemonName = Mgr.Pokemon_List().Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
 
                     FormsAndEvos_List.Items.Add(link);
                 }
@@ -1016,7 +1016,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                         MessageBoxImage.Error); // Name is Not Valid
                     Pass = false;
                 }
-                else if (Mgr.Pokemon.FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 &&
+                else if (Mgr.Pokemon_List().FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 &&
                          !Update)
                 {
                     MessageBox.Show("Name taken by another Pokemon!", "Name Error", MessageBoxButton.OK,
@@ -1038,7 +1038,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     var ID = Convert.ToDecimal(Basic_ID.Text);
 
-                    if (Mgr.Pokemon.FindAll(x => x.Species_DexID == ID).Count >= 1)
+                    if (Mgr.Pokemon_List().FindAll(x => x.Species_DexID == ID).Count >= 1)
                         if (!Update || ID != PokemonData.Species_DexID && Update)
                         {
                             MessageBox.Show("Dex ID taken by another Pokemon!", "Dex Error", MessageBoxButton.OK,
@@ -1222,7 +1222,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             if (add == true)
             {
-                var name = Mgr.Pokemon.Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
+                var name = Mgr.Pokemon_List().Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
                 FormsAndEvos_List.Items.Add(new EvoLinks(link.LinkData, name)); // Add EvoLink to list if not canceled
             }
         }

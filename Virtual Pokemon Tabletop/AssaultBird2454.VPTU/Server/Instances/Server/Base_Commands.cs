@@ -253,7 +253,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
 
-            foreach (Pokedex.Pokemon.PokemonData pokemon in Instance.SaveManager.SaveData.PokedexData.Pokemon)
+            foreach (Pokedex.Pokemon.PokemonData pokemon in Instance.SaveManager.SaveData.PokedexData.Pokemon_List())
             {
                 // Permissions Checks Here
                 PokedexData.Add(pokemon);
@@ -272,7 +272,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
 
-            foreach (Pokedex.Pokemon.PokemonData pokemon in Instance.SaveManager.SaveData.PokedexData.Pokemon)
+            foreach (Pokedex.Pokemon.PokemonData pokemon in Instance.SaveManager.SaveData.PokedexData.Pokemon_List())
             {
                 // Permissions Checks Here
                 PokedexData.Add(pokemon);
@@ -286,7 +286,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         }
         private void Pokedex_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
         {
-            Pokedex.Pokemon.PokemonData PokemonData = Instance.SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == ((Pokedex_Pokemon)Data).DexID);
+            Pokedex.Pokemon.PokemonData PokemonData = Instance.SaveManager.SaveData.PokedexData.Pokemon_List().Find(x => x.Species_DexID == ((Pokedex_Pokemon)Data).DexID);
 
             Client.Send(new Pokedex_Pokemon()
             {

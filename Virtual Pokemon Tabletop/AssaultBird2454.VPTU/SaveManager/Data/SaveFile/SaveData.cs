@@ -26,6 +26,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
             Campaign_Data = new Campaign_Data(Manager);
             AuthManager = new Auth(Manager);
+            PokedexData = new Pokedex.Save_Data.Pokedex(Manager);
         }
 
         #region Data

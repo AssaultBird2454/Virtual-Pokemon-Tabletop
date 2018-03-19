@@ -847,7 +847,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             {
                 if (Update)
                     if (MoveData.Name != OldName)
-                        foreach (var pokemon in SaveData.PokedexData.Pokemon)
+                        foreach (var pokemon in SaveData.PokedexData.Pokemon_List())
                         {
                             if (pokemon.Moves == null)
                             {

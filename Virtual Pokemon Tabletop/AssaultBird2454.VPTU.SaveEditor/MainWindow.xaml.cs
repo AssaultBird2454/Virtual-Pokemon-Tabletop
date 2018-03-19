@@ -504,7 +504,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             if (OK == true) // When Return
             {
-                SaveManager.SaveData.PokedexData.Pokemon.Add(pokemon.PokemonData); // Add Pokemon to List
+                SaveManager.SaveData.PokedexData.Pokemon_Add(pokemon.PokemonData); // Add Pokemon to List
                 PokedexManager_ReloadList(); // Reload Pokedex List
             }
         }
@@ -554,7 +554,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
                 {
                     var Data = (PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;
-                    SaveManager.SaveData.PokedexData.Pokemon.Remove(Data);
+                    SaveManager.SaveData.PokedexData.Pokemon_Remove(Data);
 
                     Data.Dispose();
                     Data = null;
@@ -569,7 +569,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
                     #region Pokemon
 
-                    foreach (var pokemon in SaveManager.SaveData.PokedexData.Pokemon)
+                    foreach (var pokemon in SaveManager.SaveData.PokedexData.Pokemon_List())
                     {
                         if (pokemon.Moves == null)
                         {
@@ -679,7 +679,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                         if (SaveManager == null) return;
 
                         if (PokedexManager_SearchDex_Pokemon.IsChecked == true)
-                            foreach (var Pokemon in SaveManager.SaveData.PokedexData.Pokemon)
+                            foreach (var Pokemon in SaveManager.SaveData.PokedexData.Pokemon_List())
                                 if (Pokemon.Species_Name.ToLower()
                                     .Contains(PokedexManager_SearchDex_Search.Text.ToLower()))
                                 {

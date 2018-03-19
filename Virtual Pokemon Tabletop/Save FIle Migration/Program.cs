@@ -23,7 +23,8 @@ namespace Save_FIle_Migration
                 Console.WriteLine("Enter Opperation");
                 Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
                 Console.WriteLine("1: Save Migration Services");
-                //Console.WriteLine("2: Save Upgrade Services");// -> (Not Implemented)
+                Console.WriteLine("2: Save Upgrade Services");// -> (Not Implemented)
+                Console.WriteLine("3: Data Migration");
                 Console.WriteLine();
                 Console.WriteLine("0: Quit");
                 Console.WriteLine();
@@ -40,6 +41,10 @@ namespace Save_FIle_Migration
                     else if (code == 1)
                     {
                         SaveMigration(Manager);
+                    }
+                    else if (code == 3)
+                    {
+                        DataMigration_Migrate(Manager);
                     }
                 }
                 catch { }
@@ -95,6 +100,54 @@ namespace Save_FIle_Migration
             {
                 //Manager.SaveData.PokedexData.
             }
+        }
+        #endregion
+        #endregion
+
+        #region Data Migration
+        static void DataMigration_Migrate(AssaultBird2454.VPTU.SaveManager.SaveManager Manager)
+        {
+            while (true)
+            {
+                Console.WriteLine("Loaded VPTUDBS @ " + Manager.SaveFileDir);
+
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                Console.WriteLine("Enter Migration Opperation");
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                Console.WriteLine("1: Migrate JSON Data (cwstra/rpdiscordbot)");
+                Console.WriteLine();
+                Console.WriteLine("0: Go Back");
+                Console.WriteLine();
+                Console.Write("Enter Opperation Code: ");
+
+                try
+                {
+                    int code = Convert.ToInt32(Console.ReadLine());
+
+                    if (code == 0)
+                    {
+                        break;
+                    }
+                    else if (code == 1)
+                    {
+                        DM_cwstra_rpdiscordbot_Moves(Manager);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        #region DM - cwstra/rpdiscordbot
+        static void DM_cwstra_rpdiscordbot_Moves(AssaultBird2454.VPTU.SaveManager.SaveManager Manager)
+        {
+            string[] Data = "\nType: Fighting\nFreq: Scene\nClass: Status\nRange: Self, Trigger, Interrupt, Shield\nEffect: If the user is hit by a Move, the user may use Detect. The user is instead not hit by the Move. You do not take any damage nor are you affected by anty of the Move's effects\nContest Type: Cool\nContest Effect: Inversed Appeal".Split('\n');
+
+            foreach(string d in Data)
+            {
+                Console.WriteLine(d);
+            }
+
+            //AssaultBird2454.VPTU.Pokedex.Moves.MoveData MD = new AssaultBird2454.VPTU.Pokedex.Moves.MoveData();
         }
         #endregion
         #endregion
